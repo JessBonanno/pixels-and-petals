@@ -6,10 +6,11 @@ import IconButton from '@material-ui/core/IconButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import jwt from 'jsonwebtoken';
 import {parseCookies} from '../../services/parseCookies';
+import {useRouter} from 'next/router';
 
 
 const ImageUpload = ({token}) => {
-
+  const router = useRouter();
   const [admin, setAdmin] = useState(null);
 
 
@@ -17,13 +18,19 @@ const ImageUpload = ({token}) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-  if (token) {
-    const decoded = jwt.decode(token)
-    if (decoded.admin) {
-      setAdmin(decoded.admin)
+    if (token) {
+      const decoded = jwt.decode(token);
+      if (decoded.admin) {
+        setAdmin(decoded.admin);
+      }
     }
-  }
   }, [token]);
+
+  useEffect(() => {
+    if (!token) {
+      router.push('/login');
+    }
+  }, []);
 
   const {mutate: uploadImage} = useMutate({
     verb: 'POST',
