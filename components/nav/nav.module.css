@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
+.navContainer {
+    padding: 1.5em 5em;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navLink {
+    padding: 0 1em;
+    font-family: Ubuntu, serif;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.inactive {
+    color: #1A1A1B;
+}
+
+.active {
+    color: saddlebrown;
+}
