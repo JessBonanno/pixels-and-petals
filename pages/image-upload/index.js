@@ -1,17 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useMutate} from 'restful-react';
 import styles from './index.module.css';
 import axios from 'axios';
 import IconButton from '@material-ui/core/IconButton';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import jwt from 'jsonwebtoken';
+import {parseCookies} from '../../services/parseCookies';
 
-const ImageUpload = () => {
+
+const ImageUpload = ({token}) => {
+  const {admin} = jwt.decode(token);
+  console.log(admin);
+
   const [selectedImage, setSelectedImage] = useState();
-  const [uploadedImage, setUploadedImage] = useState();
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+
+
+  }, [images]);
 
   const {mutate: uploadImage} = useMutate({
     verb: 'POST',
-    path: 'http://localhost:3001/api/image-upload'
+    path: 'http://localhost:3001/api/image-upload',
+
   });
 
   const handleChange = (e) => {
@@ -19,12 +31,15 @@ const ImageUpload = () => {
   };
 
   const handleUpload = async () => {
-    console.log(selectedImage);
     const formData = new FormData();
     formData.append('image', selectedImage);
+    formData.append('token', localStorage.getItem('token'))
     try {
       const response = await uploadImage(formData);
-      setUploadedImage(response)
+      setImages([
+        ...images,
+        response,
+      ]);
     } catch (err) {
       console.log(err);
     }
@@ -68,8 +83,23 @@ const ImageUpload = () => {
         <FontAwesomeIcon
           icon={['fas', 'cloud-upload-alt']}/>
       </IconButton>
+      <div className={styles.images}>
+        {images && images.map((image, key) => {
+          return (
+            <img key={key} src={image.url} alt={'uploaded image'}/>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-export default ImageUpload;
+
+ImageUpload.getInitialProps = ({req}) => {
+  const cookies = parseCookies(req);
+  return {
+    token: cookies.token
+  }
+
+}
+export default  ImageUpload;

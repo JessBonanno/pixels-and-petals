@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCode, faHighlighter, faCloudUploadAlt} from '@fortawesome/free-solid-svg-icons';
 import {faImage, faFileImage} from '@fortawesome/free-regular-svg-icons'
 
+
 library.add(
   faCode,
   faHighlighter,
@@ -14,7 +15,9 @@ library.add(
 
 
 function MyApp ({Component, pageProps}) {
-  return <Component {...pageProps} />;
+  return (
+    <Component {...pageProps} />
+    );
 }
 
 export default MyApp;
