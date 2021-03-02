@@ -9,6 +9,9 @@ import Navigation from '../components/nav/nav';
 import Footer from '../components/footer/footer';
 import Hero from '../components/home/hero/hero';
 import About from '../components/home/about/about';
+import Gallery from '../components/home/gallery/gallery';
+import Testimonial from '../components/home/testimonial/testimonial';
+import Contact from '../components/home/contact/contact';
 
 export default function Home () {
 
@@ -23,6 +26,9 @@ export default function Home () {
       <main className={styles.main}>
         <Hero/>
         <About/>
+        <Gallery/>
+        <Testimonial/>
+        <Contact/>
       </main>
 
       {/*<Footer/>*/}
