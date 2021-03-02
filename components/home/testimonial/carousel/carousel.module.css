@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
+.carouselContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #2a2a2a;
+    height: 400px;
+    margin: 2em;
+
+}
+
+.arrow {
+    font-size: 1.6rem;
+    padding: .1em;
+}
+
+.cardsContainer {
+    width: 80%;
+    height: 300px;
+    border: 1px solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+

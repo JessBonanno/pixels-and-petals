@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
+.testimonialContainer {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Ubuntu', sans-serif;
+    color: #2a2a2a;
+}
+
+.testimonialContainer h2 {
+    text-align: center;
+    padding: 2em 0 .7em;
+    font-size: 2rem;
+}
+
+.testimonialContainer p {
+    font-size: 1rem;
+    text-align: center;
+}

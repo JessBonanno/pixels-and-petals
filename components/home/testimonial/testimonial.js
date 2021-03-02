@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from './testimonial.module.css'
 import Stats from './stats/stats';
+import Carousel from './carousel/carousel';
 
 const Testimonial = () => {
   return (
-    <div>
-      Testimonial
+    <div className={styles.testimonialContainer}>
       <Stats/>
+      <h2>Happy Clients</h2>
+      <p>Twitch tail in permanent irritation</p>
+      <Carousel/>
     </div>
   );
 };

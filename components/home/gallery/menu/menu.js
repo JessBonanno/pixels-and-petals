@@ -14,19 +14,16 @@ const Menu = () => {
       <a
         onClick={() => setActive('pixels')}
         className={`${active === 'pixels' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-
         Pixels
       </a>
       <a
         onClick={() => setActive('petals')}
         className={`${active === 'petals' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-
         Petals
       </a>
       <a
         onClick={() => setActive('pets')}
         className={`${active === 'pets' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-
         Pets
       </a>
     </div>

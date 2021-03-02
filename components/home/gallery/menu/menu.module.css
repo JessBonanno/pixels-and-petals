@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-evenly;
     background-color: #FDEBDD;
+    color: #2a2a2a;
     border-radius: 20px;
     padding: .5em 0;
     width: 300px;
