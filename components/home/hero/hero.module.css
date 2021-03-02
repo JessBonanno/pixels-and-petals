@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
+.heroContainer {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+}
+
+.image {
+    background-image: url(https://res.cloudinary.com/jesscodes/image/upload/v1614640761/lucwkjeugynpanepz2z1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 600px;
+    width: 55%;
+}
+
+.heroHeading {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    font-family: Ubuntu, serif;
+    color: white;
+    margin: 10em 0 0 10em;
+}
+
+.heroHeading h2 {
+    font-size: 1.5rem;
+}
+
+.heroHeading h1 {
+    font-size: 2.2rem;
+    padding: .7em 0
+}
+
+.heroHeading p {
+    font-size: .9rem;
+    width: 50%;
+    line-height: 1.2;
+}

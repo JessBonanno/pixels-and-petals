@@ -7,6 +7,7 @@ import axios from 'axios';
 import cookie from 'js-cookie';
 import Navigation from '../components/nav/nav';
 import Footer from '../components/footer/footer';
+import Hero from '../components/home/hero/hero';
 
 export default function Home () {
 
@@ -19,7 +20,7 @@ export default function Home () {
       <Navigation/>
 
       <main className={styles.main}>
-
+        <Hero/>
       </main>
 
       {/*<Footer/>*/}
