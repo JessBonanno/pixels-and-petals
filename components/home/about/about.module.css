@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
+.aboutContainer {
+    height: 500px;
+    background-color: #FDEBDD;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    font-family: Ubuntu, serif;
+}
+
+.decorationUpper {
+
+}
+
+.aboutBody {
+    display: flex;
+    flex-direction: row;
+}
+
+.images {
+    width: 40%;
+}
+
+.info {
+    padding: 5em;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #1A1A1B;
+}
+
+.info h5 {
+    font-size: 1rem;
+}
+
+.info h2 {
+    font-size: 2rem;
+    padding: 1rem 0 2rem;
+}
+
+.info p {
+    width: 70%;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+
+.decorationLower {
+    margin-left: auto;
+    margin-top: auto;
+}

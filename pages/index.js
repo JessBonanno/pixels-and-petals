@@ -8,6 +8,7 @@ import cookie from 'js-cookie';
 import Navigation from '../components/nav/nav';
 import Footer from '../components/footer/footer';
 import Hero from '../components/home/hero/hero';
+import About from '../components/home/about/about';
 
 export default function Home () {
 
@@ -21,6 +22,7 @@ export default function Home () {
 
       <main className={styles.main}>
         <Hero/>
+        <About/>
       </main>
 
       {/*<Footer/>*/}
