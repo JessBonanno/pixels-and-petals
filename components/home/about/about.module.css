@@ -11,20 +11,50 @@
 }
 
 .decorationUpper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.decorationUpper:last-child {
 
 }
 
 .aboutBody {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    height: 300px;
+    margin: 2em 7em 1em;
 }
 
 .images {
-    width: 40%;
+    position: relative;
+    width: 250px;
+}
+
+.baseImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #2a2a2a;
+    height: 90%;
+    width: 90%;
+}
+
+.overlapImage {
+    background-image: url(https://res.cloudinary.com/jesscodes/image/upload/v1614709167/h2lwcgxxheh7uyey3krz.png);
+    position: absolute;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    bottom: 0;
+    right: 0;
+    height: 90%;
+    width: 90%;
 }
 
 .info {
-    padding: 5em;
+    padding: 2em 0 0;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -42,13 +72,14 @@
 }
 
 .info p {
-    width: 70%;
+    width: 80%;
     font-size: 1rem;
     line-height: 1.2;
 }
 
 
 .decorationLower {
-    margin-left: auto;
-    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
 }
+
