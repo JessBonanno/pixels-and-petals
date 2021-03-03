@@ -17,3 +17,22 @@
     color: #33A7A6;
     font-size: 1.5rem;
 }
+
+.icon {
+    margin-top: 1em;
+    font-size: 2rem;
+    color: #33A7A6;
+}
+
+.navContainer {
+    padding: 3em 5em 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navLink {
+    padding: 0 1em;
+    font-family: Ubuntu, serif;
+    text-decoration: none;
+    cursor: pointer;
+}
