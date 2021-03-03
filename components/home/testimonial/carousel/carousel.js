@@ -73,7 +73,7 @@ const Carousel = () => {
       <div className={styles.cardsContainer}>
         {cardData.slice(range[0], range[1]).map((data, key) => {
           return (
-            <Card data={data}/>
+            <Card key={key} data={data}/>
           );
         })}
       </div>

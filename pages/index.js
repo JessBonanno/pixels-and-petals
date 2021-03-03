@@ -11,8 +11,12 @@ import Hero from '../components/home/hero/hero';
 import About from '../components/home/about/about';
 import Gallery from '../components/home/gallery/gallery';
 import Testimonial from '../components/home/testimonial/testimonial';
+import {parseCookies} from '../services/parseCookies';
 
-export default function Home () {
+export default function Home ({folders, token}) {
+
+  console.log(folders);
+  console.log(token);
 
   return (
     <div className={styles.container}>
@@ -31,4 +35,14 @@ export default function Home () {
       <Footer/>
     </div>
   );
+}
+
+export const getStaticProps = async () => {
+  const res = await fetch(`https://${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}:${process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET}@api.cloudinary.com/v1_1/jesscodes/folders/pixels`)
+  const folders = await res.json()
+  return {
+    props: {
+      folders,
+    }
+  }
 }

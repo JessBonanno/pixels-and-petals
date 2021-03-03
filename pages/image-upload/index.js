@@ -9,13 +9,20 @@ import {parseCookies} from '../../services/parseCookies';
 import {useRouter} from 'next/router';
 
 
-const ImageUpload = ({token}) => {
+const ImageUpload = ({token, folders}) => {
+  console.log(folders);
   const router = useRouter();
   const [admin, setAdmin] = useState(null);
 
 
   const [selectedImage, setSelectedImage] = useState();
+  const [selectedFolder, setSelectedFolder] = useState();
+  const [newFolder, setNewFolder] = useState('');
+  const [canUpload, setCanUpload] = useState(false);
+  const [radioChecked, setRadioChecked] = useState(false);
+  const [availableFolders, setAvailableFolders] = useState([]);
   const [images, setImages] = useState([]);
+
 
   useEffect(() => {
     if (token) {
@@ -38,14 +45,16 @@ const ImageUpload = ({token}) => {
 
   });
 
-  const handleChange = (e) => {
+  const handleSelectImage = (e) => {
     setSelectedImage(e.target.files[0]);
   };
+
 
   const handleUpload = async () => {
     const formData = new FormData();
     formData.append('image', selectedImage);
     formData.append('token', localStorage.getItem('token'));
+    formData.append('folderName', selectedFolder);
     try {
       const response = await uploadImage(formData);
       setImages([
@@ -56,6 +65,28 @@ const ImageUpload = ({token}) => {
       console.log(err);
     }
   };
+
+  const handleSelectFolder = (e) => {
+    setSelectedFolder(e.target.value);
+    setNewFolder('');
+  };
+
+  const handleNewFolderChanges = (e) => {
+    setSelectedFolder('');
+    setNewFolder(e.target.value);
+  };
+
+  const handleAddNewFolder = (e) => {
+    e.preventDefault();
+    setSelectedFolder(newFolder);
+    setNewFolder('');
+  };
+
+  useEffect(() => {
+    if (selectedFolder && selectedImage) {
+      setCanUpload(true);
+    }
+  }, [selectedFolder, selectedImage]);
 
   if (admin) {
 
@@ -74,7 +105,7 @@ const ImageUpload = ({token}) => {
           id="icon-button-file"
           type="file"
           style={{display: 'none'}}
-          onChange={handleChange}
+          onChange={handleSelectImage}
         />
         <label htmlFor="icon-button-file">
           <h5>Choose Image</h5>
@@ -86,9 +117,75 @@ const ImageUpload = ({token}) => {
               icon={['far', 'file-image']}/>
           </IconButton>
         </label>
+
+        <h5>Select Folder</h5>
+        <div className={styles.radioGroup}>
+
+          <label htmlFor={'folderChoice1'}>
+            Caninae
+          </label>
+          <input type={'radio'}
+                 checked={selectedFolder === 'caninae'}
+                 id={'folderChoice1'}
+                 name={'folderSelection'}
+                 value={'caninae'}
+                 onChange={handleSelectFolder}/>
+          <label htmlFor={'folderChoice2'}>
+            Flora
+          </label>
+          <input
+            type={'radio'}
+            checked={selectedFolder === 'flora'}
+            id={'folderChoice2'}
+            name={'folderSelection'}
+            value={'flora'}
+            onChange={handleSelectFolder}/>
+          <label htmlFor={'folderChoice3'}>
+            Woodlands
+          </label>
+          <input
+            type={'radio'}
+            checked={selectedFolder === 'woodlands'}
+            id={'folderChoice3'}
+            name={'folderSelection'}
+            value={'woodlands'}
+            onChange={handleSelectFolder}/>
+          <label htmlFor={'folderChoice4'}>
+            Structural
+          </label>
+          <input
+            type={'radio'}
+            checked={selectedFolder === 'structural'}
+            id={'folderChoice4'}
+            name={'folderSelection'}
+            value={'structural'}
+            onChange={handleSelectFolder}/>
+          <label htmlFor={'folderChoice5'}>
+            Misfits
+          </label>
+          <input
+            type={'radio'}
+            checked={selectedFolder === 'misfits'}
+            id={'folderChoice5'}
+            name={'folderSelection'}
+            value={'misfits'}
+            onChange={handleSelectFolder}/>
+        </div>
+        <form onSubmit={handleAddNewFolder}>
+          <label htmlFor={'newFolderChoice'}>
+            <h5>Or Create a New Folder</h5>
+            <input
+              type={'text'}
+              id={'newFolderChoice'}
+              name={'newFolder'}
+              value={newFolder} onChange={handleNewFolderChanges}/>
+          </label>
+          <button type={'submit'}>Confirm New Folder</button>
+        </form>
+
         <h5>Upload Image</h5>
         <IconButton
-          disabled={!selectedImage}
+          disabled={!canUpload}
           color="primary"
           aria-label="upload picture"
           component="span"
@@ -116,11 +213,17 @@ const ImageUpload = ({token}) => {
 };
 
 
-ImageUpload.getInitialProps = ({req}) => {
+ImageUpload.getInitialProps = async ({req}) => {
   const cookies = parseCookies(req);
-  return {
-    token: cookies.token
-  };
 
+  return {
+    token: cookies.token,
+  };
 };
+
+
+
+
+
 export default ImageUpload;
+

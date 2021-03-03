@@ -28,6 +28,7 @@ app.get('/api/test', (req, res) => {
 const ALLOWED_FORMATS = ['image/jpeg', 'image/png', 'image/jpg'];
 const multer = require('multer');
 const storage = multer.memoryStorage();
+
 const upload = multer({
   storage,
   fileFilter: function (req, file, cb) {
@@ -62,12 +63,13 @@ cloudinary.config({
   api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
 });
-const cloudinaryUpload = file => {
-  return cloudinary.uploader.upload(file);
+const cloudinaryUpload = (file, folderName) => {
+  return cloudinary.uploader.upload(file, {folder: `Pixels/${folderName}`});
 };
 
 
 app.post('/api/image-upload', singleUploadCtrl, async (req, res, next) => {
+  const folderName = req.body.folderName || 'samples'
   if (req.body.token) {
     const {admin} = jwt.verify(req.body.token, process.env.COOKIE_SECRET);
     if (admin) {
@@ -76,7 +78,7 @@ app.post('/api/image-upload', singleUploadCtrl, async (req, res, next) => {
           throw new Error('Image is not present!');
         }
         const file64 = formatBufferTo64(req.file);
-        const uploadResult = await cloudinaryUpload(file64.content);
+        const uploadResult = await cloudinaryUpload(file64.content, folderName);
         return res.json({
           cloudinaryId: uploadResult.public_id,
           url: uploadResult.secure_url
