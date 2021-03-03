@@ -1,10 +1,13 @@
 import React from 'react';
-
+import styles from './footer.module.css'
 
 const Footer = () => {
   return (
-    <div>
-      Footer
+    <div className={styles.footerContainer}>
+      <h2>email@Gmail.com</h2>
+      <div className={styles.nav}>
+
+      </div>
     </div>
   );
 };

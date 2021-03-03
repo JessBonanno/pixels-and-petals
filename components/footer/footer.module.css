@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+    color: #2a2a2a;
+    height: 200px;
+    padding: 3em;
+    background-color: #FDEBDD;
+}
+
+.footerContainer h2 {
+    padding-top: 2em;
+    color: #33A7A6;
+    font-size: 1.5rem;
+}
