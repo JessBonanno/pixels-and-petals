@@ -9,7 +9,7 @@
     font-family: 'Ubuntu', sans-serif;
     color: #2a2a2a;
     height: 400px;
-    margin: 2em;
+    margin: 1em;
 
 }
 
@@ -21,10 +21,10 @@
 .cardsContainer {
     width: 80%;
     height: 300px;
-    border: 1px solid;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
+
 

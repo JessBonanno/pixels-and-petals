@@ -7,7 +7,7 @@ const Card = ({data}) => {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.info}>
-        <FontAwesomeIcon icon={['fas', 'user-astronaut']} className={styles.avatar}/>
+        <div style={{backgroundImage: `url(${data.avatar})`}} className={styles.avatar}/>
       <p className={styles.name}>{data.name}</p>
       </div>
       <p className={styles.review}>{data.review}</p>

@@ -11,6 +11,7 @@
     margin: .2em;
     border-top: 5px solid #33A7A6;
     padding: 1em .5em;
+    overflow: hidden;
 }
 
 .info {
@@ -21,10 +22,13 @@
 }
 
 .avatar {
-    font-size: 2rem;
-    border: 1px solid black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     border-radius: 100px;
     padding: .2em;
+    height: 50px;
+    width: 50px;
 }
 
 .cardContainer .name {
@@ -37,4 +41,16 @@
     padding: 2em 0;
     font-size: .8rem;
     text-align: left;
+}
+
+
+.cardContainer:nth-Child(1),
+.cardContainer:nth-child(3) {
+    opacity: .6;
+}
+
+.cardContainer:nth-child(2) {
+    position: relative;
+    bottom: 25px;
+    box-shadow: 8px 8px 10px gray;
 }
