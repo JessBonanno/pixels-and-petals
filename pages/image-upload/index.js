@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useMutate} from 'restful-react';
 import styles from './index.module.css';
 import axios from 'axios';
@@ -7,14 +7,21 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import jwt from 'jsonwebtoken';
 import {parseCookies} from '../../services/parseCookies';
 import {useRouter} from 'next/router';
+import {Context} from '../../context';
 
 
-const ImageUpload = ({token, folders}) => {
-  console.log(folders);
+const ImageUpload = ({folders}) => {
+  const [token, setToken] = useState();
+
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
+
   const router = useRouter();
+
   const [admin, setAdmin] = useState(null);
-
-
   const [selectedImage, setSelectedImage] = useState();
   const [selectedFolder, setSelectedFolder] = useState();
   const [newFolder, setNewFolder] = useState('');
@@ -22,7 +29,16 @@ const ImageUpload = ({token, folders}) => {
   const [radioChecked, setRadioChecked] = useState(false);
   const [availableFolders, setAvailableFolders] = useState([]);
   const [images, setImages] = useState([]);
+  const [imageFolders, setImageFolders] = useState([]);
 
+
+  useEffect(() => {
+    if (folders.folders) {
+      console.log(folders.folders);
+      setImageFolders(folders.folders)
+    }
+  }, [folders])
+  console.log(imageFolders);
 
   useEffect(() => {
     if (token) {
@@ -35,7 +51,8 @@ const ImageUpload = ({token, folders}) => {
 
   useEffect(() => {
     if (!token) {
-      router.push('/login');
+      // TODO handle routing!
+      // router.push('/login');
     }
   }, []);
 
@@ -88,7 +105,7 @@ const ImageUpload = ({token, folders}) => {
     }
   }, [selectedFolder, selectedImage]);
 
-  if (admin) {
+  if (admin && imageFolders) {
 
     return (
       <div className={styles.uploadContainer}>
@@ -120,56 +137,71 @@ const ImageUpload = ({token, folders}) => {
 
         <h5>Select Folder</h5>
         <div className={styles.radioGroup}>
-
-          <label htmlFor={'folderChoice1'}>
-            Caninae
-          </label>
-          <input type={'radio'}
-                 checked={selectedFolder === 'caninae'}
-                 id={'folderChoice1'}
-                 name={'folderSelection'}
-                 value={'caninae'}
-                 onChange={handleSelectFolder}/>
-          <label htmlFor={'folderChoice2'}>
-            Flora
-          </label>
-          <input
-            type={'radio'}
-            checked={selectedFolder === 'flora'}
-            id={'folderChoice2'}
-            name={'folderSelection'}
-            value={'flora'}
-            onChange={handleSelectFolder}/>
-          <label htmlFor={'folderChoice3'}>
-            Woodlands
-          </label>
-          <input
-            type={'radio'}
-            checked={selectedFolder === 'woodlands'}
-            id={'folderChoice3'}
-            name={'folderSelection'}
-            value={'woodlands'}
-            onChange={handleSelectFolder}/>
-          <label htmlFor={'folderChoice4'}>
-            Structural
-          </label>
-          <input
-            type={'radio'}
-            checked={selectedFolder === 'structural'}
-            id={'folderChoice4'}
-            name={'folderSelection'}
-            value={'structural'}
-            onChange={handleSelectFolder}/>
-          <label htmlFor={'folderChoice5'}>
-            Misfits
-          </label>
-          <input
-            type={'radio'}
-            checked={selectedFolder === 'misfits'}
-            id={'folderChoice5'}
-            name={'folderSelection'}
-            value={'misfits'}
-            onChange={handleSelectFolder}/>
+          {imageFolders.length > 0 && imageFolders.map((folder, key) => {
+            console.log('in the map');
+            return (
+              <div key={key}>
+                <label htmlFor={key}>
+                  {folder.name}
+                </label>
+                <input type={'radio'}
+                       checked={selectedFolder === folder.name}
+                       id={key}
+                       name={'folderSelection'}
+                       value={folder.name}
+                       onChange={handleSelectFolder}/>
+              </div>
+            );
+          })}
+          {/*<label htmlFor={'folderChoice1'}>*/}
+          {/*  Caninae*/}
+          {/*</label>*/}
+          {/*<input type={'radio'}*/}
+          {/*       checked={selectedFolder === 'caninae'}*/}
+          {/*       id={'folderChoice1'}*/}
+          {/*       name={'folderSelection'}*/}
+          {/*       value={'caninae'}*/}
+          {/*       onChange={handleSelectFolder}/>*/}
+          {/*<label htmlFor={'folderChoice2'}>*/}
+          {/*  Flora*/}
+          {/*</label>*/}
+          {/*<input*/}
+          {/*  type={'radio'}*/}
+          {/*  checked={selectedFolder === 'flora'}*/}
+          {/*  id={'folderChoice2'}*/}
+          {/*  name={'folderSelection'}*/}
+          {/*  value={'flora'}*/}
+          {/*  onChange={handleSelectFolder}/>*/}
+          {/*<label htmlFor={'folderChoice3'}>*/}
+          {/*  Woodlands*/}
+          {/*</label>*/}
+          {/*<input*/}
+          {/*  type={'radio'}*/}
+          {/*  checked={selectedFolder === 'woodlands'}*/}
+          {/*  id={'folderChoice3'}*/}
+          {/*  name={'folderSelection'}*/}
+          {/*  value={'woodlands'}*/}
+          {/*  onChange={handleSelectFolder}/>*/}
+          {/*<label htmlFor={'folderChoice4'}>*/}
+          {/*  Structural*/}
+          {/*</label>*/}
+          {/*<input*/}
+          {/*  type={'radio'}*/}
+          {/*  checked={selectedFolder === 'structural'}*/}
+          {/*  id={'folderChoice4'}*/}
+          {/*  name={'folderSelection'}*/}
+          {/*  value={'structural'}*/}
+          {/*  onChange={handleSelectFolder}/>*/}
+          {/*<label htmlFor={'folderChoice5'}>*/}
+          {/*  Misfits*/}
+          {/*</label>*/}
+          {/*<input*/}
+          {/*  type={'radio'}*/}
+          {/*  checked={selectedFolder === 'misfits'}*/}
+          {/*  id={'folderChoice5'}*/}
+          {/*  name={'folderSelection'}*/}
+          {/*  value={'misfits'}*/}
+          {/*  onChange={handleSelectFolder}/>*/}
         </div>
         <form onSubmit={handleAddNewFolder}>
           <label htmlFor={'newFolderChoice'}>
@@ -208,21 +240,28 @@ const ImageUpload = ({token, folders}) => {
       <div>Unauthorized</div>
     );
   }
-
-
 };
 
 
-ImageUpload.getInitialProps = async ({req}) => {
-  const cookies = parseCookies(req);
+// ImageUpload.getInitialProps = async ({req}) => {
+//   const cookies = parseCookies(req);
+//
+//   return {
+//     token: cookies.token,
+//   };
+// };
 
+export const getServerSideProps = async ({req}) => {
+
+
+  const res = await fetch(`https://${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}:${process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET}@api.cloudinary.com/v1_1/jesscodes/folders/pixels`);
+  const folders = await res.json();
   return {
-    token: cookies.token,
+    props: {
+      folders,
+    }
   };
 };
-
-
-
 
 
 export default ImageUpload;

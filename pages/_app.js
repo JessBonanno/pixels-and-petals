@@ -1,3 +1,7 @@
+import React from 'react';
+import App from 'next/app';
+import {Provider} from '../context';
+
 import '../styles/globals.css';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -34,12 +38,22 @@ library.add(
 );
 
 
-function MyApp ({Component, pageProps}) {
-  return (
-    <Component {...pageProps} />
-  );
+class MyApp extends App {
+  render () {
+    const {Component, pageProps} = this.props;
+    return (
+      <Provider>
+        <Component {...pageProps} />
+      </Provider>
+    );
+  }
 }
 
+// ({Component, pageProps}) {
+//   return (
+//     <Component {...pageProps} />
+//   );
+// }
 
 
 export default MyApp;

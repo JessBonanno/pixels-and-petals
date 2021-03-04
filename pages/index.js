@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import jwt from 'jsonwebtoken';
 import Link from 'next/link';
 import axios from 'axios';
@@ -12,11 +12,17 @@ import About from '../components/home/about/about';
 import Gallery from '../components/home/gallery/gallery';
 import Testimonial from '../components/home/testimonial/testimonial';
 import {parseCookies} from '../services/parseCookies';
+import {Context} from '../context/index';
 
-export default function Home ({folders, token}) {
+export default function Home ({folders}) {
 
-  console.log(folders);
-  console.log(token);
+  const {imageFolders, setImageFolders} = useContext(Context)
+
+  useEffect(() => {
+    setImageFolders(folders)
+  }, [])
+
+  console.log(imageFolders);
 
   return (
     <div className={styles.container}>
@@ -37,12 +43,12 @@ export default function Home ({folders, token}) {
   );
 }
 
-export const getStaticProps = async () => {
-  const res = await fetch(`https://${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}:${process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET}@api.cloudinary.com/v1_1/jesscodes/folders/pixels`)
-  const folders = await res.json()
-  return {
-    props: {
-      folders,
-    }
-  }
-}
+// export const getStaticProps = async () => {
+//   const res = await fetch(`https://${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}:${process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET}@api.cloudinary.com/v1_1/jesscodes/folders/pixels`)
+//   const folders = await res.json()
+//   return {
+//     props: {
+//       folders,
+//     }
+//   }
+// }
