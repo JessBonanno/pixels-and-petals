@@ -1,10 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
 .uploadContainer {
-    margin: 50px auto;
-    border: 1px solid;
-    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    padding: 3em;
+    font-family: 'Ubuntu', sans-serif;
+    color: #2a2a2a;
+    max-width: 900px;
+}
+
+.uploadContainer h2 {
+    font-size: 2rem;
+    margin-left: .5em;
+}
+
+.fontAwesome {
+    color: #33A7A6;
+}
+
+.folderSelectionWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em;
+    width: 70%;
+}
+
+.folderSelectionWrapper h5 {
+    font-size: 1.2rem;
+}
+
+.radioGroup {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.inputLabel {
+    text-transform: capitalize;
+}
+
+.newFolderWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    width: 70%;
+}
+
+.newFolderWrapper h5 {
+    font-size: 1.2rem;
+}
+
+.folderInput {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+    padding: .5em 1em;
+    border-radius: 5px;
+
+}
+
+.confirmButton {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+    margin-left: 1em;
+    padding: .5em 1em;
+    border-radius: 5px;
+    background-color: #33A7A6;
+    border: none;
+}
+
+.confirmButton:hover {
+    /*box-shadow: 1px 1px 1px #2a2a2a;*/
+}
+
+.confirmButton:active {
+    outline: none;
+    background-color: #2a2a2a;
+    color: #33A7A6;
+}
+
+.confirmButton:focus {
+    outline: none;
+}
+
+.imageActionsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75%
+}
+
+.uploadInputWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+}
+
+
+.uploadInputWrapper h5 {
+    font-size: 1.2rem;
 }
 
 .customFileInput {
 }
 
-.radioGroup {}
+
+.uploadWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+}
+
+.uploadWrapper h5 {
+    font-size: 1.2rem;
+}
+
