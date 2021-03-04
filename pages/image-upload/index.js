@@ -28,7 +28,7 @@ const ImageUpload = ({folders}) => {
 
   //  get folders from props for use in radio buttons
   useEffect(() => {
-    if (folders.folders) {
+    if (folders) {
       console.log(folders.folders);
       setImageFolders(folders.folders);
     }
@@ -94,6 +94,8 @@ const ImageUpload = ({folders}) => {
       console.log(err);
     }
   };
+
+  console.log(selectedImage);
 
   // enable upload button after image and folder are selected
   useEffect(() => {
@@ -184,6 +186,11 @@ const ImageUpload = ({folders}) => {
             </IconButton>
           </div>
         </div>
+        {selectedImage && (
+          <div className={styles.uploadPreview}>
+            <h5>Selected Image:   {selectedImage.name}</h5>
+          </div>
+        )}
       </div>
     );
   } else {
