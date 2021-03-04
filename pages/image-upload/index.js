@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 import {parseCookies} from '../../services/parseCookies';
 import {useRouter} from 'next/router';
 import {Context} from '../../context';
+import Head from 'next/head';
 
 
 const ImageUpload = ({folders}) => {
@@ -29,7 +30,6 @@ const ImageUpload = ({folders}) => {
   //  get folders from props for use in radio buttons
   useEffect(() => {
     if (folders) {
-      console.log(folders.folders);
       setImageFolders(folders.folders);
     }
   }, [folders]);
@@ -48,7 +48,7 @@ const ImageUpload = ({folders}) => {
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       // TODO handle routing!
-      router.push('/login');
+      router.push('/admin');
     }
   }, []);
 
@@ -95,7 +95,6 @@ const ImageUpload = ({folders}) => {
     }
   };
 
-  console.log(selectedImage);
 
   // enable upload button after image and folder are selected
   useEffect(() => {
@@ -108,12 +107,15 @@ const ImageUpload = ({folders}) => {
   if (admin && imageFolders) {
     return (
       <div className={styles.uploadContainer}>
+        <Head>
+          <title>Image Upload</title>
+          <link rel="icon" href="/favicon.ico"/>
+        </Head>
         <h2>Upload new image</h2> <br/>
         <div className={styles.folderSelectionWrapper}>
           <h5>Select Folder:</h5>
           <div className={styles.radioGroup}>
             {imageFolders.length > 0 && imageFolders.map((folder, key) => {
-              console.log('in the map');
               return (
                 <div key={key}>
                   <label htmlFor={key} className={styles.inputLabel}>

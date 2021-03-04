@@ -61,24 +61,26 @@ export default function Login () {
 
 
   return (
-    <div className={styles.container}>
+    <div className={styles.adminContainer}>
       <Head>
-        <title>Create Next App</title>
+        <title>Admin Login</title>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
 
       <main className={styles.main}>
-        <h1>{message}</h1>
-        <form method={'POST'} action={'/api/login'}>
+        <h1>Admin Login</h1>
+        <form method={'POST'} action={'/api/admin'}>
           <input type={'text'} name={'username'} value={user.username}
-                 onChange={handleChanges}/>
+                 onChange={handleChanges} className={styles.adminInput}/>
           <br/>
           <input type={'password'} name={'password'} value={user.password}
-                 onChange={handleChanges}/>
+                 onChange={handleChanges} className={styles.adminInput}/>
           <br/>
-          <input type={'button'} value={'Login'} onClick={submitForm}/>
+          <div className={styles.buttonsContainer}>
+          <input type={'button'} value={'Login'} onClick={submitForm} className={styles.adminButton}/>
+        <button onClick={handleLogout} className={styles.adminButton}>Logout</button>
+        </div>
         </form>
-        <button onClick={handleLogout}>Logout</button>
       </main>
     </div>
   );

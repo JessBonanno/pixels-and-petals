@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+.adminContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5em;
+    margin-top: 5em;
+    font-family: 'Ubuntu', sans-serif;
+    color: #2a2a2a;
+    max-width: 900px;
+}
+
+.main {}
+
+.main h1 {
+    font-size: 1.7rem;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.adminInput {
+        font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+    padding: .5em 1em;
+    border-radius: 5px;
+    margin: .5rem 0;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: .5em 0;
+}
+
+.adminButton {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+    margin-left: 1em;
+    padding: .5em 1em;
+    border-radius: 5px;
+    background-color: #33A7A6;
+    border: none;
+}
+
+.adminButton:hover {
+    /*box-shadow: 1px 1px 1px #2a2a2a;*/
+}
+
+.adminButton:active {
+    outline: none;
+    background-color: #2a2a2a;
+    color: #33A7A6;
+}
+
+.adminButton:focus {
+    outline: none;
+}
