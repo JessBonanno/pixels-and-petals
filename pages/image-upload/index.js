@@ -46,9 +46,9 @@ const ImageUpload = ({folders}) => {
 
   // reroute if no token
   useEffect(() => {
-    if (!token) {
+    if (!localStorage.getItem('token')) {
       // TODO handle routing!
-      // router.push('/login');
+      router.push('/login');
     }
   }, []);
 
@@ -188,7 +188,7 @@ const ImageUpload = ({folders}) => {
         </div>
         {selectedImage && (
           <div className={styles.uploadPreview}>
-            <h5>Selected Image:   {selectedImage.name}</h5>
+            <h5>Selected Image: {selectedImage.name}</h5>
           </div>
         )}
       </div>
