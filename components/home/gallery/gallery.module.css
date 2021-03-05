@@ -16,7 +16,19 @@
 
 .galleryContainer p {
     font-size: 1rem;
-    padding: 1em;
+    padding: 1em 0 0;
+}
+
+.galleryNavigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+.arrow {
+    font-size: 2rem;
 }
 
 .imageContainer {

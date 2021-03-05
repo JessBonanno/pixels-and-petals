@@ -3,6 +3,8 @@ import styles from './gallery.module.css';
 import Menu from './menu/menu';
 import login from '../../../pages/api/login';
 import axios from 'axios';
+import {IconButton} from '@material-ui/core';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const defaultImages = [
   {url: 'https://res.cloudinary.com/jesscodes/image/upload/v1614714073/sj8jiikyecgerng9krvz.jpg'},
@@ -13,13 +15,33 @@ const defaultImages = [
   {url: 'https://res.cloudinary.com/jesscodes/image/upload/v1614713991/fubbzwxjeoy9blaxfnzc.jpg'},
   {url: 'https://res.cloudinary.com/jesscodes/image/upload/v1614713987/kju9uvhd6irwqkvdcrgq.jpg'},
   {url: 'https://res.cloudinary.com/jesscodes/image/upload/v1614713979/v2zglnhjld0uakfkkne3.jpg'},
-  {url: 'https://res.cloudinary.com/jesscodes/image/upload/v1614713921/iosjp8iwzdl8svbugk7v.jpg'},
-  {url: 'https://res.cloudinary.com/jesscodes/image/upload/v1614713908/nhtnp0savaq5yicpq2pq.jpg'},
 ];
 
 const Gallery = ({images}) => {
   const [imageGroup, setImageGroup] = useState(defaultImages);
   const [folder, setFolder] = useState('');
+    const [range, setRange] = useState([0, 8]);
+
+  const goBack = () => {
+    if (range[0] !== 0) {
+      setRange([
+        range[0] - 8,
+        range[1] - 8
+      ]);
+    }
+  };
+
+  const goForward = () => {
+    if (range[1] !== imageGroup.length) {
+      setRange([
+        range[0] + 8,
+        range[1] + 8
+      ]);
+    } else {
+      setRange([0, 3]);
+
+    }
+  };
 
 
   useEffect(() => {
@@ -33,13 +55,32 @@ const Gallery = ({images}) => {
         }
       );
   }, [folder]);
+
+
   return (
     <div className={styles.galleryContainer}>
       <h2>My work</h2>
       <p>Browse some of my portfolio</p>
-      <Menu setFolder={setFolder}/>
+      <Menu setFolder={setFolder} setRange={setRange}/>
+      <div className={styles.galleryNavigation}>
+        <IconButton onClick={goBack}>
+          <FontAwesomeIcon
+            icon={['fas', 'chevron-left']}
+            className={styles.arrow}
+          />
+        </IconButton>
+        <p>Click an image to view in high resolution</p>
+        <IconButton >
+          <FontAwesomeIcon
+            onClick={goForward}
+            icon={['fas', 'chevron-right']}
+            className={styles.arrow}
+          />
+        </IconButton>
+      </div>
       <div className={styles.imageContainer}>
-        {imageGroup.slice(0, 8).map((image, key) => {
+
+        {imageGroup.slice(range[0], range[1]).map((image, key) => {
           return (
             <div
               key={key}
