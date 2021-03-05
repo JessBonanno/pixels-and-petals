@@ -42,19 +42,28 @@ const Gallery = ({images}) => {
 
     }
   };
-
+  const shuffleArray = (a) => {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
 
   useEffect(() => {
     axios.post(`http://localhost:3001/api/images`, {folder: folder})
       .then(res => {
           if (folder === '') {
-            setImageGroup(defaultImages);
+            setImageGroup(shuffleArray(res.data));
           } else {
             setImageGroup(res.data);
           }
         }
       );
   }, [folder]);
+
+
+
 
 
   return (

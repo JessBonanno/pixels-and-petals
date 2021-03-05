@@ -45,7 +45,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-
+    background-color: black;
 }
 
 .image:nth-child(8n+2),
