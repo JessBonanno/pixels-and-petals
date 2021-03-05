@@ -37,7 +37,5 @@ yarn-error.log*
 # jetBrains
 .idea
 
-# CONFIG
-next.config.js
 
 .vercel

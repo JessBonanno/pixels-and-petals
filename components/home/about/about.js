@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './about.module.css';
 import decoration from '../../../public/images/Group1735lines.svg';
-// import diamonds from '../../../public/images/Group1766.svg';
+import diamonds from '../../../public/images/Group1766.svg';
 
 const About = () => {
   return (
     <div className={styles.aboutContainer}>
       <div className={styles.decorationUpper}>
         <img src={decoration} alt={'decorative lines'}/>
-        {/*<img src={diamonds} alt={'decorative diamonds'}/>*/}
+        <img src={diamonds} alt={'decorative diamonds'}/>
       </div>
       <div className={styles.aboutBody}>
         <div className={styles.images}>
@@ -31,8 +31,8 @@ const About = () => {
         </div>
       </div>
       <div className={styles.decorationLower}>
-        {/*<img src={diamonds} alt={'decorative diamonds'}*/}
-        {/*     className={styles.lowerDiamonds}/>*/}
+        <img src={diamonds} alt={'decorative diamonds'}
+             className={styles.lowerDiamonds}/>
         <img src={decoration} alt={'decorative lines'}/>
       </div>
 
