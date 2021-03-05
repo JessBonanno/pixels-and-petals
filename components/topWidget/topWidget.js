@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './topWidget.module.css';
+import styles from './topWIdget.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
