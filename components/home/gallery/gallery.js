@@ -1,11 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Link from 'next/link';
 import styles from './gallery.module.css';
 import Menu from './menu/menu';
-import login from '../../../pages/api/login';
 import axios from 'axios';
-import {IconButton} from '@material-ui/core';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
 const Gallery = ({images}) => {

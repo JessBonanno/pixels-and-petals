@@ -1,0 +1,28 @@
+.topWidgetContainer {
+    margin: 3em 2em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.widget {
+    background-color: #33A7A6;
+    padding: 1em 2em;
+    border-radius: 25px;
+    font-family: 'Ubuntu', sans-serif;
+    text-decoration: none;
+    color: #2a2a2a;
+}
+
+.widget:visited {
+    color: #2a2a2a;
+}
+
+.widget:hover, .widget:active {
+    color: #33A7A6;
+    background-color: #2a2a2a;
+}
+
+.arrow {
+    padding-left: 1em;
+}

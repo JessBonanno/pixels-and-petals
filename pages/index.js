@@ -13,6 +13,7 @@ import Gallery from '../components/home/gallery/gallery';
 import Testimonial from '../components/home/testimonial/testimonial';
 import {parseCookies} from '../services/parseCookies';
 import {Context} from '../context/index';
+import TopWidget from '../components/topWidget/topWidget';
 
 export default function Home ({folders}) {
 
@@ -36,6 +37,7 @@ export default function Home ({folders}) {
         <About/>
         <Gallery folders={folders}/>
         <Testimonial/>
+        <TopWidget/>
       </main>
       <Footer/>
     </div>

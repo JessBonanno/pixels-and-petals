@@ -12,6 +12,7 @@ import {
   faChevronLeft,
   faChevronRight,
   faUserAstronaut,
+  faArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faImage,
@@ -35,6 +36,7 @@ library.add(
   faChevronLeft,
   faChevronRight,
   faUserAstronaut,
+  faArrowUp,
 );
 
 
