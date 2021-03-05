@@ -40,19 +40,28 @@
   grid-gap: 1em;
 }
 
+.imageLink {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
 .image {
     border-radius: 10px;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-color: black;
+    font-size: 2rem;
+    color: #33A7A6;
 }
 
-.image:nth-child(8n+2),
-.image:nth-child(8n+5),
-.image:nth-child(8n+6),
-.image:nth-child(8n+4) {
-  grid-row: span 2;
-}
+
+/*.image:nth-child(8n+2),*/
+/*.image:nth-child(8n+5),*/
+/*.image:nth-child(8n+6),*/
+/*.image:nth-child(8n+4) {*/
+/*  grid-row: span 2;*/
+/*}*/
 
 
