@@ -13,7 +13,6 @@ const authenticate = (username, password) => {
   }
 };
 
-
 export default function (req, res) {
   if (!req.body) {
     res.statusCode = 404;
