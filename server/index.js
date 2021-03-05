@@ -4,7 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 
 const KEY = process.env.COOKIE_SECRET;
 
@@ -16,9 +16,7 @@ const corsOptions = {
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-app.use(cookieParser(KEY))
-
-
+app.use(cookieParser(KEY));
 
 
 app.get('/api/test', (req, res) => {
@@ -67,9 +65,41 @@ const cloudinaryUpload = (file, folderName) => {
   return cloudinary.uploader.upload(file, {folder: `Pixels/${folderName}`});
 };
 
+var result = [];
+
+
+app.post('/api/images', async (req, res, next) => {
+  const {folder} = req.body;
+  const options = {
+    resource_type: "image",
+    max_results: 500
+  };
+  await cloudinary.api.resources(options, function (error, response) {
+    if (error) {
+      console.log(error);
+    }
+    let resources;
+    if (folder) {
+      resources = response.resources.filter(resource => {
+        return resource.public_id.includes(folder);
+      });
+    } else {
+      resources = response.resources;
+    }
+    if (resources.length) {
+      return res.status(200).json(resources);
+
+    } else {
+      return res.status(404).json({message: 'No images found'});
+
+    }
+  });
+
+});
+
 
 app.post('/api/image-upload', singleUploadCtrl, async (req, res, next) => {
-  const folderName = req.body.folderName || 'samples'
+  const folderName = req.body.folderName || 'samples';
   if (req.body.token) {
     const {admin} = jwt.verify(req.body.token, process.env.COOKIE_SECRET);
     if (admin) {
