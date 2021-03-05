@@ -35,7 +35,6 @@ export default function Login () {
       const res = await axios.post('api/login', user);
       const token = res.data.token;
       if (token) {
-        console.log(token);
         cookie.set('token', token, cookieOptions);
         const json = jwt.decode(token);
         if (json.admin) {
@@ -53,7 +52,6 @@ export default function Login () {
 
   const handleLogout = async () => {
     const res = await axios.post('/api/logout');
-    console.log(res);
     localStorage.clear();
     cookie.remove('token');
     setMessage('You are not logged in');

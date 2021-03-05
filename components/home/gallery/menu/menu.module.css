@@ -9,7 +9,7 @@
     color: #2a2a2a;
     border-radius: 20px;
     padding: .5em 0;
-    width: 600px;
+    width: 800px;
     margin: 1em 0;
 }
 
@@ -17,8 +17,9 @@
     text-align: center;
     cursor: pointer;
     padding: .5em;
-    width: 80px;
+    width: 100px;
     border-radius: 14px;
+    text-transform: capitalize;
 }
 
 .active {

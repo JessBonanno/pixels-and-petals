@@ -22,7 +22,6 @@ export default function Home ({folders}) {
     setImageFolders(folders)
   }, [])
 
-  console.log(imageFolders);
 
   return (
     <div className={styles.container}>
@@ -35,7 +34,7 @@ export default function Home ({folders}) {
       <main className={styles.main}>
         <Hero/>
         <About/>
-        <Gallery/>
+        <Gallery folders={folders}/>
         <Testimonial/>
       </main>
       <Footer/>
@@ -43,12 +42,14 @@ export default function Home ({folders}) {
   );
 }
 
-// export const getStaticProps = async () => {
-//   const res = await fetch(`https://${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}:${process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET}@api.cloudinary.com/v1_1/jesscodes/folders/pixels`)
-//   const folders = await res.json()
-//   return {
-//     props: {
-//       folders,
-//     }
-//   }
-// }
+
+// getting image folders from api
+export const getServerSideProps = async ({req}) => {
+  const res = await fetch(`https://${process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY}:${process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET}@api.cloudinary.com/v1_1/jesscodes/folders/pixels`);
+  const folders = await res.json();
+  return {
+    props: {
+      folders,
+    }
+  };
+};

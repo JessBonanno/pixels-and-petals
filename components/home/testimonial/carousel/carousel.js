@@ -59,7 +59,6 @@ const Carousel = () => {
     }
   };
 
-  console.log(range);
   return (
     <div className={styles.carouselContainer}>
       <IconButton onClick={goBack}>

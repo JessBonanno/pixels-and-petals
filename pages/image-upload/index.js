@@ -55,7 +55,7 @@ const ImageUpload = ({folders}) => {
   // send the uploaded image to cloudinary
   const {mutate: uploadImage} = useMutate({
     verb: 'POST',
-    path: 'http://localhost:3001/api/image-upload',
+    path: '/api/image-upload',
 
   });
 
@@ -81,15 +81,17 @@ const ImageUpload = ({folders}) => {
 
   const handleUpload = async () => {
     const formData = new FormData();
-    formData.append('image', selectedImage);
+    formData.append('upload_preset', 'wq9qoqey');
+    formData.append('file', selectedImage);
     formData.append('token', localStorage.getItem('token'));
-    formData.append('folderName', selectedFolder);
+    formData.append('folder', `pixels/${selectedFolder}`);
+
     try {
-      const response = await uploadImage(formData);
-      setImages([
-        ...images,
-        response,
-      ]);
+      const res = await fetch('https://api.cloudinary.com/v1_1/jesscodes/image/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const file = await res.json();
     } catch (err) {
       console.log(err);
     }

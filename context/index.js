@@ -7,8 +7,7 @@ const Context = createContext({});
 
 // context provider
 const Provider = ({ children, folders }) => {
-  console.log(folders);
-  const [imageFolders, setImageFolders] = useState();
+  const [imageFolders, setImageFolders] = useState([]);
   const aThing = 'this thing'
 
 

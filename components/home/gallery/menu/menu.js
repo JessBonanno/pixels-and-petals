@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styles from './menu.module.css';
+import {Context} from '../../../../context';
 
 const Menu = ({setFolder, setRange}) => {
   const [active, setActive] = useState('all');
-
+  const {imageFolders} = useContext(Context);
   return (
     <div className={styles.menuContainer}>
       <a
@@ -15,53 +16,24 @@ const Menu = ({setFolder, setRange}) => {
         className={`${active === 'all' ? styles.active : styles.inactive} ${styles.menuLink}`}>
         All
       </a>
-      <a
-        onClick={() => {
-          setFolder('caninae');
-          setActive('caninae');
-          setRange([0, 8]);
-        }}
-        className={`${active === 'caninae' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-        Caninae
-      </a>
-      <a
-        onClick={() => {
-          setFolder('flora');
-          setActive('flora');
-          setRange([0, 8]);
-        }}
-        className={`${active === 'flora' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-        Flora
-      </a>
-      <a
-        onClick={() => {
-          setFolder('woodlands');
-          setActive('woodlands');
-          setRange([0, 8]);
-        }}
-        className={`${active === 'woodlands' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-        Woodlands
-      </a>
-      <a
-        onClick={() => {
-          setFolder('structural');
-          setActive('structural');
-          setRange([0, 8]);
-        }}
-        className={`${active === 'structural' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-        Structural
-      </a>
-      <a
-        onClick={() => {
-          setFolder('misfits');
-          setActive('misfits');
-          setRange([0, 8]);
-        }}
-        className={`${active === 'misfits' ? styles.active : styles.inactive} ${styles.menuLink}`}>
-        Misfits
-      </a>
+      {imageFolders.folders && imageFolders.folders.map((folder, key) => {
+        return (
+          <a
+            key={key}
+            onClick={() => {
+              setFolder(folder.name);
+              setActive(folder.name);
+              setRange([0, 8]);
+            }}
+            className={`${active === folder.name ? styles.active : styles.inactive} ${styles.menuLink}`}>
+            {folder.name}
+          </a>
+        );
+      })}
+
     </div>
   );
 };
+
 
 export default Menu;

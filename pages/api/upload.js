@@ -19,9 +19,6 @@ app.use(cors(corsOptions));
 app.use(cookieParser(KEY));
 
 
-
-
-
 const ALLOWED_FORMATS = ['image/jpeg', 'image/png', 'image/jpg'];
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -38,14 +35,15 @@ const upload = multer({
 });
 const singleUpload = upload.single('image');
 
-const singleUploadCtrl = (req, res, next) => {
+const singleUploadCtrl = async (req, res, next) => {
   singleUpload(req, res, (error) => {
     if (error) {
       return res.status(422).send({message: 'Image upload fail!'});
     }
-    next();
+    // next();
   });
 };
+
 const path = require('path');
 const DatauriParser = require('datauri/parser');
 const parser = new DatauriParser();
@@ -66,85 +64,28 @@ const cloudinaryUpload = (file, folderName) => {
 
 var result = [];
 
-export default async function (req, res) {
-  const {folder} = req.body;
-  const options = {
-    resource_type: "image",
-    max_results: 500
+
+export default async function (req, res, next) {
+
+    const folderName = req.body.folderName || 'samples';
+    if (req.body.token) {
+      const {admin} = jwt.verify(req.body.token, process.env.COOKIE_SECRET);
+      if (admin) {
+        try {
+          if (!req.file) {
+            throw new Error('Image is not present!');
+          }
+          const file64 = formatBufferTo64(req.file);
+          const uploadResult = await cloudinaryUpload(file64.content, folderName);
+          return res.json({
+            cloudinaryId: uploadResult.public_id,
+            url: uploadResult.secure_url
+          });
+        } catch (err) {
+          return res.status(422).send({message: err.message});
+        }
+      } else {
+        res.status(401).json({message: 'Unauthorized'});
+      }
+    }
   };
-  await cloudinary.api.resources(options, function (error, response) {
-    if (error) {
-      console.log(error);
-    }
-    let resources;
-    if (folder) {
-      resources = response.resources.filter(resource => {
-        return resource.public_id.includes(folder);
-      });
-    } else {
-      resources = response.resources;
-    }
-    if (resources.length) {
-      return res.status(200).json(resources);
-
-    } else {
-      return res.status(404).json({message: 'No images found'});
-
-    }
-  });
-}
-
-
-// app.post('/api/images', async (req, res, next) => {
-//   const {folder} = req.body;
-//   const options = {
-//     resource_type: "image",
-//     max_results: 500
-//   };
-//   await cloudinary.api.resources(options, function (error, response) {
-//     if (error) {
-//       console.log(error);
-//     }
-//     let resources;
-//     if (folder) {
-//       resources = response.resources.filter(resource => {
-//         return resource.public_id.includes(folder);
-//       });
-//     } else {
-//       resources = response.resources;
-//     }
-//     if (resources.length) {
-//       return res.status(200).json(resources);
-//
-//     } else {
-//       return res.status(404).json({message: 'No images found'});
-//
-//     }
-//   });
-//
-// });
-
-
-// app.post('/api/image-upload', singleUploadCtrl, async (req, res, next) => {
-//   const folderName = req.body.folderName || 'samples';
-//   if (req.body.token) {
-//     const {admin} = jwt.verify(req.body.token, process.env.COOKIE_SECRET);
-//     if (admin) {
-//       try {
-//         if (!req.file) {
-//           throw new Error('Image is not present!');
-//         }
-//         const file64 = formatBufferTo64(req.file);
-//         const uploadResult = await cloudinaryUpload(file64.content, folderName);
-//         return res.json({
-//           cloudinaryId: uploadResult.public_id,
-//           url: uploadResult.secure_url
-//         });
-//       } catch (err) {
-//         return res.status(422).send({message: err.message});
-//       }
-//     } else {
-//       res.status(401).json({message: 'Unauthorized'});
-//     }
-//   }
-// });
