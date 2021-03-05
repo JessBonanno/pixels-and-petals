@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './about.module.css';
-import decoration from '../../../public/images/Group 1735lines.svg';
-import diamonds from '../../../public/images/Group 1766.svg';
+import decoration from '../../../public/images/Group1735lines.svg';
+import diamonds from '../../../public/images/Group1766.svg';
 
 const About = () => {
   return (
