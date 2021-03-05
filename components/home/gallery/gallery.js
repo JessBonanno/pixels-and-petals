@@ -64,7 +64,6 @@ const Gallery = ({images}) => {
 
   const getImages = async () => {
         const res = await axios.get('/api/images');
-
   }
 
   return (
