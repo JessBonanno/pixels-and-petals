@@ -9,6 +9,7 @@ import {parseCookies} from '../../services/parseCookies';
 import {useRouter} from 'next/router';
 import {Context} from '../../context';
 import Head from 'next/head';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 const ImageUpload = ({folders}) => {
@@ -21,6 +22,8 @@ const ImageUpload = ({folders}) => {
   const [canUpload, setCanUpload] = useState(false);
   const [images, setImages] = useState([]);
   const [imageFolders, setImageFolders] = useState([]);
+  const [success, setSuccess] = useState(false);
+
 
   //check for token
   useEffect(() => {
@@ -47,7 +50,6 @@ const ImageUpload = ({folders}) => {
   // reroute if no token
   useEffect(() => {
     if (!localStorage.getItem('token')) {
-      // TODO handle routing!
       router.push('/admin');
     }
   }, []);
@@ -85,13 +87,15 @@ const ImageUpload = ({folders}) => {
     formData.append('file', selectedImage);
     formData.append('token', localStorage.getItem('token'));
     formData.append('folder', `pixels/${selectedFolder}`);
-
     try {
       const res = await fetch('https://api.cloudinary.com/v1_1/jesscodes/image/upload', {
         method: 'POST',
         body: formData
       });
       const file = await res.json();
+      if (res) {
+        setSuccess(true);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -109,11 +113,22 @@ const ImageUpload = ({folders}) => {
   if (admin && imageFolders) {
     return (
       <div className={styles.uploadContainer}>
+        <Snackbar
+          className={styles.snackbar}
+          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
+          open={success}
+          message={'Upload Successful'}
+          autoHideDuration={2000}
+          onClose={() => setSuccess(false)}
+        />
         <Head>
           <title>Image Upload</title>
           <link rel="icon" href="/favicon.ico"/>
         </Head>
-        <h2>Upload new image</h2> <br/>
+        <div className={styles.header}>
+          <h2>Upload new image</h2> <br/>
+          <a onClick={() => router.push('/')}>Return Home</a>
+        </div>
         <div className={styles.folderSelectionWrapper}>
           <h5>Select Folder:</h5>
           <div className={styles.radioGroup}>
@@ -189,6 +204,7 @@ const ImageUpload = ({folders}) => {
                 style={{color: canUpload && '#33A7A6'}}/>
             </IconButton>
           </div>
+
         </div>
         {selectedImage && (
           <div className={styles.uploadPreview}>
