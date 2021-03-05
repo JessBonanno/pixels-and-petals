@@ -4,7 +4,6 @@ import {useRouter} from 'next/router';
 
 const KEY = process.env.COOKIE_SECRET;
 
-
 const authenticate = (username, password) => {
   if (username === process.env.NEXT_PUBLIC_ADMIN_USERNAME && password === process.env.NEXT_PUBLIC_ADMIN_PASSWORD) {
     return true;
