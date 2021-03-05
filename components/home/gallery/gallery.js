@@ -67,7 +67,7 @@ const Gallery = ({images}) => {
   }
 
   return (
-    <div className={styles.galleryContainer}>
+    <div className={styles.galleryContainer} id={'gallery'}>
       <h2>My work</h2>
       <p>Browse some of my portfolio</p>
       <Menu setFolder={setFolder} setRange={setRange}/>

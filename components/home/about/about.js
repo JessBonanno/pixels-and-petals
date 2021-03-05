@@ -5,7 +5,7 @@ import diamonds from '../../../public/images/Group1766.svg';
 
 const About = () => {
   return (
-    <div className={styles.aboutContainer}>
+    <div className={styles.aboutContainer} id={'about'}>
       <div className={styles.decorationUpper}>
         <img src={decoration} alt={'decorative lines'}/>
         <img src={diamonds} alt={'decorative diamonds'}/>
