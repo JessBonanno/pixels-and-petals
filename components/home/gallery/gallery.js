@@ -51,7 +51,7 @@ const Gallery = ({images}) => {
   }
 
   useEffect(() => {
-    axios.post(`http://localhost:3001/api/images`, {folder: folder})
+    axios.post(`/api/images`, {folder: folder})
       .then(res => {
           if (folder === '') {
             setImageGroup(shuffleArray(res.data));
@@ -62,9 +62,10 @@ const Gallery = ({images}) => {
       );
   }, [folder]);
 
+  const getImages = async () => {
+        const res = await axios.get('/api/images');
 
-
-
+  }
 
   return (
     <div className={styles.galleryContainer}>
@@ -79,9 +80,9 @@ const Gallery = ({images}) => {
           />
         </IconButton>
         <p>Click an image to view in high resolution</p>
-        <IconButton >
+        <IconButton onClick={goForward}>
           <FontAwesomeIcon
-            onClick={goForward}
+
             icon={['fas', 'chevron-right']}
             className={styles.arrow}
           />
