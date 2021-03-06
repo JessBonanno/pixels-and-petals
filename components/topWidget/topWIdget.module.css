@@ -26,3 +26,31 @@
 .arrow {
     padding-left: 1em;
 }
+
+/* tablet styles */
+@media (max-width: 992px) {
+    .topWidgetContainer {
+        margin: 2em 1em;
+    }
+    .widget {
+        padding: 1em;
+    }
+    .text {
+        display: none;
+    }
+    .arrow {
+        padding: 0
+    }
+
+}
+
+/* mobile styles */
+@media (max-width: 688px) {
+    .topWidgetContainer {
+        margin: 2em 1em;
+    }
+    .widget {
+        padding: .7em;
+    }
+
+}
