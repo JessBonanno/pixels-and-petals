@@ -36,7 +36,7 @@ export default function Home ({folders}) {
         <Gallery folders={folders}/>
         {/*<Testimonial/>*/}
         <TopWidget/>
-      {/*<Footer/>*/}
+      <Footer/>
     </div>
   );
 }
