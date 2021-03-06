@@ -31,14 +31,11 @@ export default function Home ({folders}) {
         <link rel="icon" href="/favicon.ico"/>
       </Head>
       <Navigation/>
-
-      <main className={styles.main}>
         <Hero/>
         <About/>
         <Gallery folders={folders}/>
         <Testimonial/>
         <TopWidget/>
-      </main>
       <Footer/>
     </div>
   );
