@@ -1,0 +1,17 @@
+.menuContainer {
+    background-color: #33A7A6;
+}
+
+.menu {
+}
+
+.menuLink {
+    font-family: 'Ubuntu', sans-serif;
+    color: #2a2a2a;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.menuLink:visited {
+    color: #2a2a2a;
+}

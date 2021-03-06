@@ -7,6 +7,14 @@
     justify-content: flex-end;
 }
 
+.iconButton {
+    display: none;
+}
+
+.icon {
+    display: none;
+}
+
 .navLink {
     padding: 0 1em;
     font-family: Ubuntu, serif;
@@ -20,4 +28,31 @@
 
 .active {
     color: saddlebrown;
+}
+
+/* tablet styles */
+@media (max-width: 992px) {
+    .navContainer {
+        padding: 1.5em 5em;
+        display: flex;
+        justify-content: flex-end;
+        background-color: #33A7A6;
+    }
+
+    .navLink {
+        display: none;
+    }
+    .iconButton {
+        display: block;
+    }
+    .icon {
+        display: block;
+        color: #2a2a2a;
+    }
+
+}
+
+/* mobile styles */
+@media (max-width: 688px) {
+
 }

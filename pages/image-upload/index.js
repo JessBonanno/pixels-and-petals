@@ -1,15 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {useMutate} from 'restful-react';
-import styles from './index.module.css';
-import axios from 'axios';
-import IconButton from '@material-ui/core/IconButton';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import React, {useEffect, useState} from 'react';
 import jwt from 'jsonwebtoken';
-import {parseCookies} from '../../services/parseCookies';
+import {useMutate} from 'restful-react';
 import {useRouter} from 'next/router';
-import {Context} from '../../context';
-import Head from 'next/head';
+import styles from './index.module.css';
+import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
+import Head from 'next/head';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
 const ImageUpload = ({folders}) => {
