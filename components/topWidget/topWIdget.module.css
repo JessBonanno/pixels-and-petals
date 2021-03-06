@@ -1,5 +1,5 @@
 .topWidgetContainer {
-    margin: 3em 2em;
+    margin: 2.5em 1.5em;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -7,7 +7,7 @@
 
 .widget {
     background-color: #33A7A6;
-    padding: 1em 2em;
+    padding: .7em 1em;
     border-radius: 25px;
     font-family: 'Ubuntu', sans-serif;
     text-decoration: none;
@@ -23,9 +23,6 @@
     background-color: #2a2a2a;
 }
 
-.arrow {
-    padding-left: 1em;
-}
 
 /* tablet styles */
 @media (max-width: 992px) {
@@ -37,9 +34,6 @@
     }
     .text {
         display: none;
-    }
-    .arrow {
-        padding: 0
     }
 
 }
