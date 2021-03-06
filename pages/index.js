@@ -32,7 +32,7 @@ export default function Home ({folders}) {
       </Head>
       <Navigation/>
         <Hero/>
-        {/*<About/>*/}
+        <About/>
         {/*/!*<Gallery folders={folders}/>*!/*/}
         {/*<Testimonial/>*/}
         {/*<TopWidget/>*/}

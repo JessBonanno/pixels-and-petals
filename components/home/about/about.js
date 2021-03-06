@@ -7,8 +7,8 @@ const About = () => {
   return (
     <div className={styles.aboutContainer} id={'about'}>
       <div className={styles.decorationUpper}>
-        <img src={decoration} alt={'decorative lines'}/>
-        <img src={diamonds} alt={'decorative diamonds'}/>
+        <img src={decoration} alt={'decorative lines'} className={styles.linesUpper}/>
+        <img src={diamonds} alt={'decorative diamonds'} className={styles.diamondsUpper}/>
       </div>
       <div className={styles.aboutBody}>
         <div className={styles.images}>
@@ -32,8 +32,8 @@ const About = () => {
       </div>
       <div className={styles.decorationLower}>
         <img src={diamonds} alt={'decorative diamonds'}
-             className={styles.lowerDiamonds}/>
-        <img src={decoration} alt={'decorative lines'}/>
+             className={styles.diamondsLower}/>
+        <img src={decoration} alt={'decorative lines'} className={styles.linesLower}/>
       </div>
 
     </div>
