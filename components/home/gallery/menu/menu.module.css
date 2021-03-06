@@ -8,7 +8,7 @@
     background-color: #FDEBDD;
     color: #2a2a2a;
     border-radius: 20px;
-    padding: .5em 0;
+    padding: .5em 1em;
     max-width: 80%;
     /*width: 100px;*/
     margin: 1em 0;
@@ -18,7 +18,7 @@
     text-align: center;
     cursor: pointer;
     padding: .5em;
-    width: 100px;
+    width: 90px;
     border-radius: 14px;
     text-transform: capitalize;
 }
