@@ -28,3 +28,22 @@
 }
 
 .inactive {}
+
+/* tablet styles */
+@media (max-width: 992px) {
+
+}
+
+/* mobile styles */
+@media (max-width: 688px) {
+        .menuContainer {
+    padding: .5em 2em;
+        width: 100%;
+    margin: 1em 0;
+}
+
+.menuLink {
+    font-size: .85rem;
+    padding: .4em;
+}
+}
