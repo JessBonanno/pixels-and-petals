@@ -33,13 +33,13 @@ const Footer = () => {
 
           Gallery
         </a>
-        <a
-          href={'#testimonial'}
+        {/*<a*/}
+        {/*  href={'#testimonial'}*/}
 
-          className={styles.navLink}>
+        {/*  className={styles.navLink}>*/}
 
-          Testimonial
-        </a>
+        {/*  Testimonial*/}
+        {/*</a>*/}
         <a
           href={'#footer'}
 

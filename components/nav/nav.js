@@ -46,14 +46,14 @@ const handleMenuClick = (event) => {
 
         Gallery
       </a>
-      <a
-        href={'#testimonial'}
+      {/*<a*/}
+      {/*  href={'#testimonial'}*/}
 
-        onClick={() => setActive('testimonial')}
-        className={`${active === 'testimonial' ? styles.active : styles.inactive} ${styles.navLink}`}>
+      {/*  onClick={() => setActive('testimonial')}*/}
+      {/*  className={`${active === 'testimonial' ? styles.active : styles.inactive} ${styles.navLink}`}>*/}
 
-        Testimonial
-      </a>
+      {/*  Testimonial*/}
+      {/*</a>*/}
       <a
         href={'#footer'}
 
