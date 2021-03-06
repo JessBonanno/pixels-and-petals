@@ -32,11 +32,11 @@ export default function Home ({folders}) {
       </Head>
       <Navigation/>
         <Hero/>
-        <About/>
-        <Gallery folders={folders}/>
-        <Testimonial/>
-        <TopWidget/>
-      <Footer/>
+        {/*<About/>*/}
+        {/*/!*<Gallery folders={folders}/>*!/*/}
+        {/*<Testimonial/>*/}
+        {/*<TopWidget/>*/}
+      {/*<Footer/>*/}
     </div>
   );
 }
